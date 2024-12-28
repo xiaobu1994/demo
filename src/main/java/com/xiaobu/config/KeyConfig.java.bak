@@ -1,0 +1,40 @@
+package com.xiaobu.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * The type Key config.
+ *
+ * @author xiaobu
+ * @version 1.0
+ * @date 2021 /8/24 21:09
+ */
+@Configuration
+public class KeyConfig {
+    @Value("${str}")
+    private String str;
+
+    @Value("${datasource0.jdbc-url}")
+    private String url0;
+    @Value("${datasource0.username}")
+    private String username0;
+    @Value("${datasource0.password}")
+    private String password0;
+    @Value("${datasource0.driver-class-name}")
+    private String driverClassName0;
+
+    @Value("${datasource1.jdbc-url}")
+    private String url1;
+    @Value("${datasource1.username}")
+    private String username1;
+    @Value("${datasource1.password}")
+    private String password1;
+    @Value("${datasource1.driver-class-name}")
+    private String driverClassName1;
+
+    @Value(("${spring.datasource.druid.filters}"))
+    private String filters;
+
+
+}
