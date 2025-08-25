@@ -50,44 +50,17 @@ public class PersonTests {
         }
         System.out.println("list.size() = " + list.size());
     }
-
     @Test
-    public void writeDataFor() {
-        String path = "D:\\export";
-        File file = new File(path);
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            assert files != null;
-            for (File f : files) {
-                String name = f.getName();
-                if (name.endsWith(".xlsx")) {
-                    ExcelReader reader = ExcelUtil.getReader(f.getAbsolutePath());
-                    reader.addHeaderAlias("NAME", "name");
-                    reader.addHeaderAlias("ID", "id");
-                    reader.addHeaderAlias("MONTH", "month");
-                    List<Person> all = reader.readAll(Person.class);
-                    Set<Person> set = new HashSet<>();
-                    for (Person idCard : all) {
-                        String id = idCard.getId();
-                        Person person = personService.selectById(id);
-                        if (person == null) {
-                            Short month = IdcardUtil.getMonthByIdCard(id);
-                            idCard.setMonth(Integer.valueOf(month));
-                            set.add(idCard);
-                        }
-                    }
-                    if (set.size() > 0) {
-                        List<Person> data = new ArrayList<>(set);
-                        try {
-                            personService.insertList(data);
-                        } catch (Exception e) {
-                            log.error("[writeData]::e.getMessage() ==> [{}]", e.getMessage());
-                        }
-                    }
-                }
-            }
-        }
+    public void selectById() {
+
+        Person person = personService.selectById("1");
+        System.out.println("person = " + person);
     }
+
+
+    
+
+
 
 
 }
